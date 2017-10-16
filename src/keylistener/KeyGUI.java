@@ -5,25 +5,131 @@
  */
 package keylistener;
 
-import javax.swing.*;
+import java.util.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
  * @author Van Do
  */
-public class KeyGUI extends JFrame implements KeyListener{
-
+public class KeyGUI extends JFrame
+{
     /**
      * Creates new form KeyGUI
      */
-    public KeyGUI() {
+    
+    DefaultListModel currentModel = new DefaultListModel();
+    DefaultListModel historyModel = new DefaultListModel();
+    Date date;
+    JFrame frame = new JFrame("Key Listener by Search Through File");
+    
+    public KeyGUI() 
+    {
         initComponents();
         setTitle("Find File And Search Keywords");
         lblHistoryFile.setText("No file has been searched yet.");
         lblHistorySearchKeyword.setText("No keywords has been searched yet.");
-        txtAreaHistoryResult.setText("No results displayed yet.");
+        listCurrentResult = new JList(currentModel);
+        listResult = new JList(historyModel);
+        txtSearch.setEnabled(false);
+        // Key listener when file text box or search bar have been pressed enter
+        FileAction fileAction = new FileAction();
+        SearchAction searchAction = new SearchAction();
+        HistoryAction historyAction = new HistoryAction();
+        txtFileName.addKeyListener(fileAction);
+        txtSearch.addKeyListener(searchAction);
+        textArrows.addKeyListener(historyAction);
     }
+    // Nested class to keep it only accessible to the main class
+    // Using this class to find an existing text file to search for the keyword in file
+    class FileAction implements KeyListener
+    {
+        @Override
+        public void keyTyped(KeyEvent key) 
+        {
+            
+        }
+
+        @Override
+        public void keyPressed(KeyEvent key) 
+        {
+            int keyCode = key.getKeyCode();
+            if(keyCode == KeyEvent.VK_ENTER)
+            {
+                System.out.println( "File text box has been entered." );
+                txtSearch.setEnabled(true);
+                txtSearch.requestFocus();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent key) 
+        {
+            
+        }
+    }
+    
+    class SearchAction implements KeyListener
+    {
+        @Override
+        public void keyTyped(KeyEvent key) 
+        {
+            
+        }
+
+        @Override
+        public void keyPressed(KeyEvent key) 
+        {
+            int keyCode = key.getKeyCode();
+            if(keyCode == KeyEvent.VK_ENTER)
+            {
+                date = new Date();
+                System.out.println( "Search text box has been entered." );
+                txtSearch.setEnabled(false);
+                textArrows.requestFocus();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent key) 
+        {
+            
+        }        
+    }
+    
+    class HistoryAction implements KeyListener
+    {
+
+        @Override
+        public void keyTyped(KeyEvent key) 
+        {
+            
+        }
+
+        @Override
+        public void keyPressed(KeyEvent key) 
+        {
+            int keyCode = key.getKeyCode();
+            switch(keyCode)
+            {
+                case KeyEvent.VK_LEFT:
+                    System.out.println("Left is pressed.");
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    System.out.println("Right is pressed.");
+                    break;
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent key) 
+        {
+            
+        }
+        
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,13 +145,14 @@ public class KeyGUI extends JFrame implements KeyListener{
         lblFileName = new javax.swing.JLabel();
         lblSearch = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
-        txtAreaResult = new javax.swing.JScrollPane();
-        txtAreaSearchResult = new javax.swing.JTextArea();
         lblSearchInfo = new javax.swing.JLabel();
         lblHistoryFile = new javax.swing.JLabel();
         lblHistorySearchKeyword = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaHistoryResult = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listResult = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listCurrentResult = new javax.swing.JList<>();
+        textArrows = new javax.swing.JTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -55,15 +162,14 @@ public class KeyGUI extends JFrame implements KeyListener{
 
         lblSearch.setText("Search: ");
 
-        txtAreaSearchResult.setColumns(20);
-        txtAreaSearchResult.setRows(5);
-        txtAreaResult.setViewportView(txtAreaSearchResult);
+        lblSearchInfo.setText("Check Through Search History");
 
-        lblSearchInfo.setText("Check Throug Search History By Pressing Left Or Right");
+        jScrollPane2.setViewportView(listResult);
 
-        txtAreaHistoryResult.setColumns(20);
-        txtAreaHistoryResult.setRows(5);
-        jScrollPane1.setViewportView(txtAreaHistoryResult);
+        jScrollPane3.setViewportView(listCurrentResult);
+
+        textArrows.setEditable(false);
+        textArrows.setText("Click here. Then press left or right to check search history");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,24 +178,33 @@ public class KeyGUI extends JFrame implements KeyListener{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAreaResult)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearch))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblFileName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblSearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSearch))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 179, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblHistoryFile)
+                                    .addComponent(lblHistorySearchKeyword))
+                                .addGap(185, 185, 185))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblFileName)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblSearchInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblHistoryFile)
-                            .addComponent(lblHistorySearchKeyword)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                        .addComponent(textArrows)
+                        .addGap(32, 32, 32))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(lblSearchInfo)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,16 +218,18 @@ public class KeyGUI extends JFrame implements KeyListener{
                     .addComponent(lblSearch)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAreaResult, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(lblSearchInfo)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSearchInfo)
+                .addGap(11, 11, 11)
                 .addComponent(lblHistoryFile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblHistorySearchKeyword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                .addGap(36, 36, 36))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textArrows, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9))
         );
 
         pack();
@@ -121,7 +238,8 @@ public class KeyGUI extends JFrame implements KeyListener{
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -146,8 +264,10 @@ public class KeyGUI extends JFrame implements KeyListener{
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
                 new KeyGUI().setVisible(true);
             }
         });
@@ -155,31 +275,17 @@ public class KeyGUI extends JFrame implements KeyListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblFileName;
     private javax.swing.JLabel lblHistoryFile;
     private javax.swing.JLabel lblHistorySearchKeyword;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JLabel lblSearchInfo;
-    private javax.swing.JTextArea txtAreaHistoryResult;
-    private javax.swing.JScrollPane txtAreaResult;
-    private javax.swing.JTextArea txtAreaSearchResult;
+    private javax.swing.JList<String> listCurrentResult;
+    private javax.swing.JList<String> listResult;
+    private javax.swing.JTextField textArrows;
     private javax.swing.JTextField txtFileName;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void keyTyped(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyPressed(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyReleased(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
