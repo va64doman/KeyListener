@@ -1,0 +1,72 @@
+\hypertarget{classkeylistener_1_1_read_file}{}\section{keylistener.\+Read\+File Class Reference}
+\label{classkeylistener_1_1_read_file}\index{keylistener.\+Read\+File@{keylistener.\+Read\+File}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Boolean \hyperlink{classkeylistener_1_1_read_file_a2438c71e757495e44c2892ff821ad189}{is\+File} (String file\+Name)
+\item 
+List$<$ String $>$ \hyperlink{classkeylistener_1_1_read_file_a889398266aa6c457b948b5ab40a2548e}{read\+File} (String file\+Name)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Buffered\+Reader \hyperlink{classkeylistener_1_1_read_file_a18760d47084093fc16d97fc105c48c1e}{reader}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classkeylistener_1_1_read_file}{Read\+File} --- this class allows to check the existence of the file and read file. \begin{DoxyAuthor}{Author}
+Van Do 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classkeylistener_1_1_read_file_a2438c71e757495e44c2892ff821ad189}\label{classkeylistener_1_1_read_file_a2438c71e757495e44c2892ff821ad189}} 
+\index{keylistener\+::\+Read\+File@{keylistener\+::\+Read\+File}!is\+File@{is\+File}}
+\index{is\+File@{is\+File}!keylistener\+::\+Read\+File@{keylistener\+::\+Read\+File}}
+\subsubsection{\texorpdfstring{is\+File()}{isFile()}}
+{\footnotesize\ttfamily Boolean keylistener.\+Read\+File.\+is\+File (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if file does exist. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & -\/ the name of the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the file is exists or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkeylistener_1_1_read_file_a889398266aa6c457b948b5ab40a2548e}\label{classkeylistener_1_1_read_file_a889398266aa6c457b948b5ab40a2548e}} 
+\index{keylistener\+::\+Read\+File@{keylistener\+::\+Read\+File}!read\+File@{read\+File}}
+\index{read\+File@{read\+File}!keylistener\+::\+Read\+File@{keylistener\+::\+Read\+File}}
+\subsubsection{\texorpdfstring{read\+File()}{readFile()}}
+{\footnotesize\ttfamily List$<$String$>$ keylistener.\+Read\+File.\+read\+File (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Read all lines from the file and store into list. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & -\/ the name of the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the list of lines from the file. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em File\+Not\+Found\+Exception} & -\/ catch errors if file does not exists. \\
+\hline
+{\em I\+O\+Exception} & -\/ catch errors if lines have incorrect variable declaration. \\
+\hline
+\end{DoxyExceptions}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classkeylistener_1_1_read_file_a18760d47084093fc16d97fc105c48c1e}\label{classkeylistener_1_1_read_file_a18760d47084093fc16d97fc105c48c1e}} 
+\index{keylistener\+::\+Read\+File@{keylistener\+::\+Read\+File}!reader@{reader}}
+\index{reader@{reader}!keylistener\+::\+Read\+File@{keylistener\+::\+Read\+File}}
+\subsubsection{\texorpdfstring{reader}{reader}}
+{\footnotesize\ttfamily Buffered\+Reader keylistener.\+Read\+File.\+reader\hspace{0.3cm}{\ttfamily [private]}}
+
+Read lines from any file 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/keylistener/\hyperlink{_read_file_8java}{Read\+File.\+java}\end{DoxyCompactItemize}

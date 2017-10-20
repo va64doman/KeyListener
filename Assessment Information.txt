@@ -1,0 +1,10 @@
+To meet this specific requirement, you must:
+
+Produce an application or website that makes use of visual drag and drop
+Your code should also:
+
+Be commented (explain the logic in your own words and include documentation comments);
+Include a nested class (eg. the custom adapter inner class);
+Include Logging statements to write debug/informational messages. (Take a screenshot of the Device Log showing your messages.)
+Provide any "missing" element that is not covered in the group project. (eg. Navigate to a Help screen)
+Once you have completed the requirements above, zip your application and upload it here. This is an individual assignment, not a group submission.
