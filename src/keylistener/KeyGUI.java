@@ -5,7 +5,6 @@
  */
 package keylistener;
 
-import java.awt.BorderLayout;
 import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
