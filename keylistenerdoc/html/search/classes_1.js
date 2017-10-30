@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keygui',['KeyGUI',['../classkeylistener_1_1_key_g_u_i.html',1,'keylistener']]]
+  ['historyaction',['HistoryAction',['../classkeylistener_1_1_key_g_u_i_1_1_history_action.html',1,'keylistener::KeyGUI']]]
 ];

@@ -25,8 +25,7 @@ public class KeyTest
     String fileName = "SortedList.txt";
     // Default list as empty list
     List<String> lineList = new ArrayList<>();
-    
-    
+    // Before testing, check if file existed.
     @Before
     public void setUp() 
     {
@@ -34,33 +33,35 @@ public class KeyTest
         checkFileExistence();
         checkFileTransfersLineToList();
     }
-    
+    // Test if file does exists
     @Test
     public void checkFileExistence()
     {
         // Check if file does exists
         assertTrue("This file does exists.", file.isFile(fileName));
     }
-    
-    @Ignore
+    // Ignore checking non-existence file test
+    @Ignore("Have tested already.")
+    @Test
     public void checkFileNonExistence()
     {
         // Check if file does not exist
         assertFalse("This file does not exist.", file.isFile("fakefile.txt"));
     }
-    
+    // Test if all lines from file are transfer to the list
     @Test
     public void checkFileTransfersLineToList()
     {
         // Check if every lines in this file added to list and check if list is not empty
         lineList = file.readFile(fileName);
+        // Display every line from file
         for(String line : lineList)
         {
             System.out.println(line);
         }
         assertTrue("List does contains lines from file.", !lineList.isEmpty());
     }
-    
+    // Test if there are one or more results found by comparison
     @Test
     public void searchLineByKeywordAndOneOrMore()
     {
@@ -77,7 +78,7 @@ public class KeyTest
         assertTrue("Search results contains one or more found results.", searchList.size() > 0);
         System.out.println("Number of found results: " + searchList.size());
     }
-    
+    // Test if there are no results found by comparison
     @Test
     public void searchLineByKeywordAndReturnNone()
     {
@@ -89,7 +90,7 @@ public class KeyTest
         assertTrue("Search results are empty.", searchList.isEmpty());
         System.out.println("Number of found results: " + searchList.size() + " for " + keyword);
     }
-    
+    // After testing, display a linked list full of search history nodes
     @After
     public void displayLinkedListResult() 
     {
@@ -136,6 +137,7 @@ public class KeyTest
         }
         // Set temp as start
         temp = start;
+        System.out.println();
         System.out.println("Displaying history and connection.");
         System.out.println();
         // Iterate loop until all nodes have been read

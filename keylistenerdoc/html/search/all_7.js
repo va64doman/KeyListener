@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['next',['next',['../classkeylistener_1_1_file_history.html#aa9571ba3eabdcc6b9e7d152a0a7537ee',1,'keylistener::FileHistory']]]
+  ['main',['main',['../classkeylistener_1_1_key_g_u_i.html#ac0043858e116673e920af7f1542f5376',1,'keylistener::KeyGUI']]]
 ];

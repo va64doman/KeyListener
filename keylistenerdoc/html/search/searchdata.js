@@ -1,7 +1,7 @@
 var indexSectionsWithContent =
 {
-  0: "dfgiklmnprst",
-  1: "fkrs",
+  0: "dfghiklmnprst",
+  1: "fhkrs",
   2: "k",
   3: "fkrs",
   4: "dfgikmrs",

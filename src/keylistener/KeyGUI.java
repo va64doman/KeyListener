@@ -63,15 +63,22 @@ public class KeyGUI extends JFrame
     /**
      * FileAction --- this nested class used for key listener to allows to read file without clicking button.
      */
-    class FileAction implements KeyListener
+    private class FileAction implements KeyListener
     {
+        /**
+         * Event happened when user typed on key.
+         * @param key - the key code that the user typed.
+         */
         @Override
         public void keyTyped(KeyEvent key) 
         {
             // When user keeps typing on file text box, display this message in console
             System.out.println("Number of characters in file text box: " + txtFileName.getText().length());
         }
-
+        /**
+         * Event happened when user pressed on key. This allows to check the file existence.
+         * @param key - the key code that the user pressed.
+         */
         @Override
         public void keyPressed(KeyEvent key) 
         {
@@ -100,7 +107,10 @@ public class KeyGUI extends JFrame
                 }
             }
         }
-
+        /**
+         * Event happened when the user released key.
+         * @param key - the key code that the user released.
+         */
         @Override
         public void keyReleased(KeyEvent key) 
         {
@@ -112,15 +122,22 @@ public class KeyGUI extends JFrame
     /**
      * SearchAction --- this nested class used key listener to search for the lines that contain keywords.
      */
-    class SearchAction implements KeyListener
+    private class SearchAction implements KeyListener
     {
+        /**
+         * Event happened when user typed on key.
+         * @param key - the key code that the user typed. 
+         */
         @Override
         public void keyTyped(KeyEvent key) 
         {
             // When user keeps typing on search text box, display this message in console
             System.out.println("Number of characters in search text box: " + txtSearch.getText().length());
         }
-
+        /**
+         * Event happened when user pressed on key. This allows to search through the file and compare keyword from lines.
+         * @param key - the key code that the user pressed.
+         */
         @Override
         public void keyPressed(KeyEvent key) 
         {
@@ -184,7 +201,10 @@ public class KeyGUI extends JFrame
                 displayHistory();                
             }
         }
-
+        /**
+         * Event happened when the user released key.
+         * @param key - the key code that the user released.
+         */
         @Override
         public void keyReleased(KeyEvent key) 
         {
@@ -195,15 +215,22 @@ public class KeyGUI extends JFrame
     /**
      * HistoryAction --- this nested class used key listener to search through the history by pressing arrow keys.
      */
-    class HistoryAction implements KeyListener
+    private class HistoryAction implements KeyListener
     {
+        /**
+         * Event happened when user typed on key.
+         * @param key - the key code that the user typed. 
+         */
         @Override
         public void keyTyped(KeyEvent key) 
         {
             // When user keeps typing on history text box, display this message in console
             System.out.println("Key has been touched.");
         }
-
+        /**
+         * Event happened when user pressed on key. This allows to check through search history from linked list.
+         * @param key - the key code that the user pressed.
+         */
         @Override
         public void keyPressed(KeyEvent key) 
         {
@@ -263,7 +290,10 @@ public class KeyGUI extends JFrame
                     break;
             }
         }
-
+        /**
+         * Event happened when the user released key.
+         * @param key - the key code that the user released.
+         */
         @Override
         public void keyReleased(KeyEvent key) 
         {
@@ -435,16 +465,51 @@ public class KeyGUI extends JFrame
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    /**
+     * The label that display the node's search history date.
+     */
     private javax.swing.JLabel lblDate;
+    /**
+     * The label that user should enter a file name.
+     */
     private javax.swing.JLabel lblFileName;
+    /**
+     * The label that display the history file's name that user wants to check 
+     * based on the node of the linked list.
+     */
     private javax.swing.JLabel lblHistoryFile;
+    /**
+     * The label that display the history keyword that user wants to check 
+     * based on the node of the linked list.
+     */
     private javax.swing.JLabel lblHistorySearchKeyword;
+    /**
+     * The label that user should enter the keyword.
+     */
     private javax.swing.JLabel lblSearch;
+    /**
+     * The label that shows the separation between the search history and user input to search currently.
+     */
     private javax.swing.JLabel lblSearchInfo;
+    /**
+     * The list of found result by line from the file and keyword.
+     */
     private javax.swing.JList<String> listResult;
+    /**
+     * The scroll pane to scroll list box vertically and hortizonally.
+     */
     private javax.swing.JScrollPane scrollPane;
+    /**
+     * The text box that contains key listener to check through the search history.
+     */
     private javax.swing.JTextField txtArrows;
+    /**
+     * The text box that contains key listener to check if file exists.
+     */
     private javax.swing.JTextField txtFileName;
+    /**
+     * The text box that contains key listener to find this keyword line by line from the file.
+     */
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
