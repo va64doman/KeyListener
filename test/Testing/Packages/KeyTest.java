@@ -42,7 +42,6 @@ public class KeyTest
     }
     // Ignore checking non-existence file test
     @Ignore("Have tested already.")
-    @Test
     public void checkFileNonExistence()
     {
         // Check if file does not exist
