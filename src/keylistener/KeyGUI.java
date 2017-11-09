@@ -428,6 +428,7 @@ public class KeyGUI extends JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * The static void that allows to run the swing application.
      * @param args the command line arguments
      */
     public static void main(String args[]) 
